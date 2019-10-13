@@ -1,5 +1,3 @@
-
-
 function task(){
 
 var num =0 ;

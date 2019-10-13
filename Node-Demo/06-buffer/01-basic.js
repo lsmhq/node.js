@@ -9,5 +9,4 @@ log('buf1:',buf1);
 buf1.fill(0,0,256);
 var buf2 = buf1.slice(250,256);//切取后
 log('buf2:',buf2);
-
 log("buf1:",buf1);

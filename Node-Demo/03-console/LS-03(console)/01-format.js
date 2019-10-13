@@ -1,5 +1,3 @@
-
-
 var user = {
     name:"daitianfang",
     age:21,
