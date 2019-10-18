@@ -20,7 +20,7 @@
             display: -webkit-flex;
         }
         .leftpart {
-            background: url(./login_bg.jpg) no-repeat;
+            background: url(/images/login_bg.jpg) no-repeat;
             position: fixed;
             top: 0;
             bottom: 0;
@@ -98,7 +98,7 @@
     <div class="login">
         <div class="leftpart"></div>
         <div class="loginform">
-            <form class="myform" action="http://localhost:8083/post" method="post">
+            <form class="myform" method="POST" action="/list">
                 <input type="text" autocomplete="off" placeholder="帐号" class="el-input__inner"  id="username" name="username"/> 
                 
                 <input type="password" autocomplete="off" placeholder="密码" class="el-input__inner"  id="pwd" name="pwd"/>

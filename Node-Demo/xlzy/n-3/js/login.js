@@ -35,13 +35,11 @@ function login(req,res) {
         if(postData.username === userList[0].username && postData.pwd === userList[0].pwd){
             res.write(JSON.stringify(postData));
             res.end();
-            return true;
         }
         else{
-            var html = "<p>用户名或密码错误,请返回重新登录</p>"+" <a>返回</a>";
-            res.write('<p>Hello</p>');
+            var html = '登录失败，请返回';
+            res.write(html);
             res.end();
-            return false;
         }
     })
 }

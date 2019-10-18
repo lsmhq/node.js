@@ -42,14 +42,17 @@
     $(document).ready(function() {
         var search = window.location.search;
         var chapterId = search.substr(search.indexOf("=") + 1);
-        $.get("http://localhost:8084/getDetail?chapterId=" + chapterId, function(data) {
+        var a = window.location.href.split('=')[1];
+        console.log(a);
+        $.get("http://localhost:8083/add", function(data){
             var dataObj = JSON.parse(data);
-            $("#title").html(dataObj[0]["chapterName"]);
-            $("#publish").html(dataObj[0]["publishTimer"]);
-            $("#author").html(dataObj[0]["author"]);
-            $("#views").html(dataObj[0]["views"]);
-            $("#content").html(dataObj[0]["chapterContent"]);
+            $("#title").html(dataObj[a]["chapterName"]);
+            $("#publish").html(dataObj[a]["publishTimer"]);
+            $("#author").html(dataObj[a]["author"]);
+            $("#views").html(dataObj[a]["views"]);
+            $("#content").html(dataObj[a]["chapterContent"]);
         })
+        // console.log(window.location.href);
     })
 </script>
 </html>

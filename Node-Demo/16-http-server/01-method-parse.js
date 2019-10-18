@@ -5,15 +5,15 @@ http.createServer((req,res) => {
     res.end('OK');
     switch (req.method) {
         case 'GET':{
-            select(res);
+            select(req,res);
             break;
         }
         case 'POST':{
-            insert(res);
+            insert(req,res);
             break;
         }
         case 'PUT':{
-
+            update(req,res);
             break;
         }
         case 'DELETE':{
@@ -26,16 +26,25 @@ http.createServer((req,res) => {
     }
 }).listen(8080);
 
-function update(res) {
+function update(req,res) {
     
 }
 
-function select(res) {
+function select(req,res) {
     
 }
 
-function insert(res) {
-    
+function insert(req,res) {
+    var item = '';
+    req.on('data',(data)=>{
+        item += data;
+    })
+
+    req.on('end',()=>{
+        if(typeof item !== 'undefined'){
+            item.push()
+        }
+    })
 }
 
 function errMessage() {

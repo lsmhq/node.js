@@ -15,11 +15,11 @@
 	<div class="newblog left">
         <!--左left开始-->
         <div class="oneblog">
-            <h2><a title="路·过-喜欢在路上" href="/">路·过-喜欢在路上</a></h2>
-            <figure><img src='images/1442201163344838-lp.jpg' border='0' width='120' height='120' alt='路·过-喜欢在路上'></figure>
+            <h2><a title="路·过-喜欢在路上" href="/chapter?a=0">路·过-喜欢在路上</a></h2>
+            <figure><img src='images/1442201163344838-lp.jpg' width='120' height='120' alt='路·过-喜欢在路上'></figure>
             <ul class="nlist">
                 <p>注定，有些路，只能一个人走；有些事，只能一个人扛。因为我喜欢在路上！走在林间小道上，一个人，晃晃悠悠，无所适从，看着那些在风中微微呻吟着的落叶，远远望去，像一群疲...</p>
-                <a title="路·过-喜欢在路上" href="/" target="_blank" class="readmore">阅读全文>></a>
+                <a title="路·过-喜欢在路上" href="/chapter?a=0" target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview">
                 <span>发布时间：2019-08-19</span>
@@ -31,11 +31,11 @@
             </p>
         </div>
         <div class="oneblog">
-            <h2><a title="路·过-喜欢在路上" href="/">路·过-喜欢在路上</a></h2>
+            <h2><a title="路·过-喜欢在路上" href="/chapter?a=1">路·过-喜欢在路上</a></h2>
             <figure><img src='images/1442642178239101-lp.jpg' border='0' width='120' height='120' alt='路·过-喜欢在路上'></figure>
             <ul class="nlist">
                 <p>注定，有些路，只能一个人走；有些事，只能一个人扛。因为我喜欢在路上！走在林间小道上，一个人，晃晃悠悠，无所适从，看着那些在风中微微呻吟着的落叶，远远望去，像一群疲...</p>
-                <a title="路·过-喜欢在路上" href="/" target="_blank" class="readmore">阅读全文>></a>
+                <a title="路·过-喜欢在路上" href="/chapter?a=1" target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview">
                 <span>发布时间：2019-08-19</span>
@@ -47,11 +47,11 @@
             </p>
         </div>
         <div class="oneblog">
-            <h2><a title="路·过-喜欢在路上" href="/">路·过-喜欢在路上</a></h2>
+            <h2><a title="路·过-喜欢在路上" href="/chapter?a=2">路·过-喜欢在路上</a></h2>
             <figure><img src='images/1442539025939884-lp.jpg' border='0' width='120' height='120' alt='路·过-喜欢在路上'></figure>
             <ul class="nlist">
                 <p>注定，有些路，只能一个人走；有些事，只能一个人扛。因为我喜欢在路上！走在林间小道上，一个人，晃晃悠悠，无所适从，看着那些在风中微微呻吟着的落叶，远远望去，像一群疲...</p>
-                <a title="路·过-喜欢在路上" href="/" target="_blank" class="readmore">阅读全文>></a>
+                <a title="路·过-喜欢在路上" href="/chapter?a=2" target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview">
                 <span>发布时间：2019-08-19</span>
@@ -63,11 +63,11 @@
             </p>
         </div>
         <div class="oneblog">
-            <h2><a title="路·过-喜欢在路上" href="/">路·过-喜欢在路上</a></h2>
+            <h2><a title="路·过-喜欢在路上" href="/chapter?a=3">路·过-喜欢在路上</a></h2>
             <figure><img src='images/1442457564979540.jpeg' border='0' width='120' height='120' alt='路·过-喜欢在路上'></figure>
             <ul class="nlist">
                 <p>注定，有些路，只能一个人走；有些事，只能一个人扛。因为我喜欢在路上！走在林间小道上，一个人，晃晃悠悠，无所适从，看着那些在风中微微呻吟着的落叶，远远望去，像一群疲...</p>
-                <a title="路·过-喜欢在路上" href="/" target="_blank" class="readmore">阅读全文>></a>
+                <a title="路·过-喜欢在路上" href="/chapter?a=3" target="_blank" class="readmore">阅读全文>></a>
             </ul>
             <p class="dateview">
                 <span>发布时间：2019-08-19</span>
@@ -79,11 +79,6 @@
             </p>
         </div>
         
-          <!--分页开始-->
-        <div class="page">
-              
-        </div>
-        <!--分页结束-->
 	</div>
 </article>
 <footer>
@@ -94,6 +89,46 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script>
+    fetch('http://localhost:8083/add').then(req=>req.json()).then((data)=>{
+        let oneblog = document.getElementsByClassName('oneblog');
+        data.map((item,index)=>{
+            oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].innerHTML = item.chapterName;
+            oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].title = item.chapterName;
+            oneblog[index].getElementsByTagName('figure')[0].getElementsByTagName('img')[0].src = item.imgPath;
+            oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('p')[0].innerHTML = item.chapterDes;
+            oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('a')[0].title = item.chapterName;
+            // oneblog[index].getElementsByClassName('dateview')[0].getElementsByTagName('span')[0].innerHTML = '发布时间:'+item.publishTimer;
+            oneblog[index].getElementsByClassName('dateview')[0].getElementsByTagName('span')[3].innerHTML = item.views;
+
+        });
+    });
+
     
+    fetch('http://localhost:8083/add').then((req)=>{
+        return req.json();
+    }).then((data)=>{
+        console.log(data.length);
+        let length = document.getElementsByClassName('oneblog').length;
+        console.log(length);
+        let newblog = document.getElementsByClassName('newblog')[0];
+        for(let i = data.length-(data.length-length);i<data.length;i++){
+        //    console.log(i);
+            addNode(newblog,i,data);
+        }
+    });
+    function addNode(newblog,i,data){
+        var article = data[i];
+        var oneblog = document.createElement('div');
+        var title = document.createElement('h2');
+        var content = document.createElement('span');
+        var a = document.createElement('a');
+        a.href = `/chapter?a=${i}`;
+        a.innerHTML = article.chapterName;
+        title.appendChild(a);
+        content.innerHTML = article.chapterContent;
+        oneblog.appendChild(title);
+        oneblog.appendChild(content);
+        newblog.appendChild(oneblog);
+    }
 </script>
 </html>
