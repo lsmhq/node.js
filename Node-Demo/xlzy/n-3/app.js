@@ -55,9 +55,7 @@ http.createServer(
         if(url.parse(req.url).pathname === '/list' || url.parse(req.url).pathname === '/addChapter' || url.parse(req.url).pathname === '/delChapter'){
             password(req,res);
         }
-
     }).listen(8083);
-
     //页面路由
     function routerPage(req,res){
         var path = url.parse(req.url).pathname;
@@ -96,6 +94,10 @@ http.createServer(
                 chapterData(req,res);
                 break;
             }
+            case '/del':{
+                del(req,res);
+                break;
+            }
         }
         //静态文件
         switch (dir) {
@@ -116,7 +118,7 @@ http.createServer(
                 res.end(loadStatic(path));
             }
         }
-        if(path != '/delChapter' && path != '/login' && path != '/' && path != '/chapter' && path != '/chapterList' && path != '/list' && path != '/addChapter' && path != '/listmanager' && path != '/add' && path != '/view'){
+        if(path != '/del' && path != '/delChapter' && path != '/login' && path != '/' && path != '/chapter' && path != '/chapterList' && path != '/list' && path != '/addChapter' && path != '/listmanager' && path != '/add' && path != '/view'){
             loadPage(res,__dirname + '/404');
         }
     }
@@ -202,8 +204,20 @@ http.createServer(
             post = post + data;
             post = qs.parse(post);
             chapterList.push(post);
-        })
+        });
         req.on('end',()=>{
             res.end(JSON.stringify(chapterList));
         });
+    }
+
+    function del(req,res){
+        let post = '';
+        req.on('data',(data)=>{
+            post = post + data;
+            post = qs.parse(post);
+            chapterList.splice(post.chapterId,1);
+        })
+        req.on('end',()=>{
+            res.end(JSON.stringify(chapterList));
+        })
     }

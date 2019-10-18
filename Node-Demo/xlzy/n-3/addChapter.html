@@ -180,6 +180,9 @@
     function showList() {
         window.location = "http://localhost:8083/list"
     }
+    function delChapter(){
+        window.location = "http://localhost:8083/delChapter"
+    }
     $("#sub").click(function() {
         $.post("http://localhost:8083/add", {"chapterName": $("#title").val(), "chapterContent": $("#ct").html()}, function() {
             window.location = "http://localhost:8083/list"

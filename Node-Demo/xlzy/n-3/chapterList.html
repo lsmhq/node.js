@@ -89,22 +89,29 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script>
-    fetch('http://localhost:8083/add').then(req=>req.json()).then((data)=>{
+    fetch('http://localhost:8083/listmanager').then(req=>req.json()).then((data)=>{
         let oneblog = document.getElementsByClassName('oneblog');
+        let length =data.length;
+        console.log(length);
+        for (let i = oneblog.length- (oneblog.length - data.length); i < oneblog.length; i++) {
+            oneblog[i].style.display = 'none';
+        }
         data.map((item,index)=>{
-            oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].innerHTML = item.chapterName;
-            oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].title = item.chapterName;
-            oneblog[index].getElementsByTagName('figure')[0].getElementsByTagName('img')[0].src = item.imgPath;
-            oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('p')[0].innerHTML = item.chapterDes;
-            oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('a')[0].title = item.chapterName;
+            if(item){
+                oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].innerHTML = item.chapterName;
+                oneblog[index].getElementsByTagName('h2')[0].getElementsByTagName('a')[0].title = item.chapterName;
+                oneblog[index].getElementsByTagName('figure')[0].getElementsByTagName('img')[0].src = item.imgPath;
+                oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('p')[0].innerHTML = item.chapterDes;
+                oneblog[index].getElementsByClassName('nlist')[0].getElementsByTagName('a')[0].title = item.chapterName;
             // oneblog[index].getElementsByClassName('dateview')[0].getElementsByTagName('span')[0].innerHTML = '发布时间:'+item.publishTimer;
-            oneblog[index].getElementsByClassName('dateview')[0].getElementsByTagName('span')[3].innerHTML = item.views;
-
+                oneblog[index].getElementsByClassName('dateview')[0].getElementsByTagName('span')[3].innerHTML = item.views;
+                console.log(2);
+            }
         });
     });
 
     
-    fetch('http://localhost:8083/add').then((req)=>{
+    fetch('http://localhost:8083/listmanager').then((req)=>{
         return req.json();
     }).then((data)=>{
         console.log(data.length);

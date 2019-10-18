@@ -163,8 +163,13 @@
             </ul>
         </div>
         <div class="right" style="text-align: center;">
-           <form action="/" method="POST" style="margin-top: 200px;">
-                <input type="text" name="chapterId" placeholder="输入要删除的文章的下标" style="width: 300px;height: 50px;text-align: center;">
+            <div style="margin-top: 100px;">
+                <h2>指引</h2>
+                <p>比如要删除第一篇文章，只需输入0</p>
+            </div>
+           <form action="/del" method="POST" style="margin-top: 50px;">
+
+                <input id="text" type="text" name="chapterId" placeholder="输入要删除的文章的下标" style="width: 300px;height: 50px;text-align: center;"/>
                 <input type="button" type="submit" value="删除" id="del">
             </form>
         </div>
@@ -173,10 +178,10 @@
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 <script>
-    $('#del').click(()=>{
-        $.post('http://localhost:8083/add',()=>{
-            
-        });
-    });
+    $("#del").click(function() {
+        $.post("http://localhost:8083/del", {"chapterId": $("#text").val()}, function() {
+            window.location = "http://localhost:8083/list"
+        })
+    })
 </script>
 </html>
